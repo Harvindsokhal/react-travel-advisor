@@ -17,19 +17,21 @@ const App = () => {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude}}) => {
-            setCoordinates({ lat: latitude, lng: longitude})
+            setCoordinates({ lat: latitude, lng: longitude })
         })
     }, []);
 
 
     useEffect(() => {
-        console.log(coordinates, bounds);
-        getPlacesData()
+        if (bounds) {
+            getPlacesData(bounds.sw, bounds.ne)
             .then((data) => {
                 console.log(data);
-
+                
                 setPlaces(data);
             })
+        }
+
     }, [coordinates, bounds])
 
     return (
