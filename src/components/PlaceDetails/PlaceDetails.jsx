@@ -37,6 +37,18 @@ const PlaceDetails = ({ place }) => {
                     <Chip key={name} size="small" label={name} className={classes.chip} />
                 ))}
 
+                {place?.address && (
+                    <Typography gutterBottom variant="subtitle2S" color="textSecondary" className={classes.subtitle}>
+                        <LocationOnIcon/> {place.address}
+                    </Typography>
+                )}
+
+                {place?.phone && (
+                    <Typography gutterBottom variant="subtitle2S" color="textSecondary" className={classes.spacing}>
+                        <PhoneIcon/> {place.phone}
+                    </Typography>
+                )}
+
 
             </CardContent>
         </Card>
