@@ -27,6 +27,16 @@ const PlaceDetails = ({ place }) => {
                     <Typography variant="subtitle1">Ranking</Typography>
                     <Typography gutterBottom variant="subtitle1">{place.ranking}</Typography>
                 </Box>
+                {place?.awards?.map((award) => (
+                    <Box my={1} display="flex" justifyContent="space-between" alignItems="center">
+                        <img src={award.images.small} alt={award.display_name}/>
+                        <Typography variant="subtitle2" color="textSecondary">{award.display_name}</Typography>
+                    </Box>
+                ))}
+                {place?.cuisine?.map(({ name }) => (
+                    <Chip key={name} size="small" label={name} className={classes.chip} />
+                ))}
+
 
             </CardContent>
         </Card>
