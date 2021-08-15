@@ -7,6 +7,10 @@ export default makeStyles((theme) => ({
           display: 'block',
         },
       },
+      toggle: {
+        position: "relative",
+        marginRight: theme.spacing(150)
+      },
       search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,

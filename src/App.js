@@ -26,6 +26,10 @@ const App = () => {
     const [type, setType] = useState('restaurants');
     const [rating, setRating] = useState('');
 
+    const [isDarkMode, setIsDarkMode] = useState(() => false)
+
+    const toggle = () => setIsDarkMode(!isDarkMode)
+
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude}}) => {
             setCoordinates({ lat: latitude, lng: longitude })
@@ -59,7 +63,7 @@ const App = () => {
     return (
         <>
             <CssBaseline/>
-            <Header setCoordinates={setCoordinates}/>
+            <Header isDarkMode={isDarkMode} toggle={toggle} setCoordinates={setCoordinates}/>
             <Grid container spacing={3} style={{ width: '100%'}}>
                 <Grid item xs={12} md={4}>
                     <List
@@ -74,6 +78,7 @@ const App = () => {
                 </Grid>
                 <Grid item xs={12} md={8}>
                     <Map
+                        isDarkMode={isDarkMode}
                         setCoordinates={setCoordinates}
                         setBounds={setBounds}
                         coordinates={coordinates}

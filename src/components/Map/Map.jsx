@@ -10,7 +10,7 @@ import useStyles from './styles';
 
 
 
-const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData }) => {
+const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData, isDarkMode }) => {
     const classes = useStyles();
     const isDesktop = useMediaQuery('(min-width:600px)');
 
@@ -23,7 +23,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, 
                 center={coordinates}
                 defaultZoom={14}
                 margin={[50, 50, 50, 50]}
-                options={{ disableDefaultUI: true, zoomControl: true, styles: mapStyles.dark }}
+                options={{ disableDefaultUI: true, zoomControl: true, styles: isDarkMode? mapStyles.dark : null }}
                 onChange={(e) => {
                     setCoordinates({lat: e.center.lat, lng: e.center.lng});
                     setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
@@ -41,7 +41,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, 
                             !isDesktop ? (
                                 <LocationOnOutlinedIcon color="primary" fontSize="large"/>
                             ): (
-                                <Paper elevation={3} className={classes.paper} >
+                                <Paper elevation={3} style={isDarkMode? {backgroundColor: '#2D2D2D', color: 'white'} : null} className={classes.paper} >
                                     <Typography className={classes.typography} variant="subtitle2" gutterBottom>
                                         {place.name}
                                     </Typography>

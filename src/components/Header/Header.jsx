@@ -3,11 +3,14 @@ import { Autocomplete } from '@react-google-maps/api';
 import { AppBar, Toolbar, Typography, InputBase, Box } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
+import DarkModeToggle from "react-dark-mode-toggle";
+
 import useStyles from './styles';
 
-const Header = ({ setCoordinates }) => {
+const Header = ({ setCoordinates, isDarkMode, toggle }) => {
     const classes = useStyles();
     const [autoComplete, setAutoComplete] = useState(null)
+
 
     const onLoad = (autoC) => setAutoComplete(autoC);
 
@@ -24,6 +27,11 @@ const Header = ({ setCoordinates }) => {
                 <Typography variant="h5" className={classes.title}>
                     Travel Advisor
                 </Typography>
+                <DarkModeToggle 
+                    className={classes.toggle}
+                    onChange={toggle}
+                    checked={isDarkMode}
+                />
                 <Box display="flex">
                     <Typography variant="h6" className={classes.title}>
                         Explore new places
